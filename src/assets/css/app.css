@@ -1,0 +1,80 @@
+@import "nave.css";
+*{
+  margin: 0;
+}
+body{
+  background-color: #f0f0f0;
+  overflow-y: scroll;
+}
+a{
+  text-decoration: none;
+}
+/*组件动画*/
+.rightIntoCenter-enter {
+  transform: translateX(100%);
+}
+.rightIntoCenter-enter-to {
+  transform: translateX(0);
+}
+.rightIntoCenter-enter-active {
+  transition: 1s;
+}
+.rightIntoCenter-leave {
+  transform: translateX(0);
+}
+.rightIntoCenter-leave-to {
+  transform: translateX(-100%);
+}
+.rightIntoCenter-leave-active {
+  transition: 1s;
+}
+.leftIntoCenter-enter {
+  transform: translateX(-100%);
+}
+.leftIntoCenter-enter-to {
+  transform: translateX(0);
+}
+.leftIntoCenter-enter-active {
+  transition: 1s;
+}
+.leftIntoCenter-leave {
+  transform: translateX(0);
+}
+.leftIntoCenter-leave-to {
+  transform: translateX(100%);
+}
+.leftIntoCenter-leave-active {
+  transition: 1s;
+}
+
+
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+.fade-enter-active {
+  transition: 0.5s;
+}
+.fade-leave {
+  opacity: 1;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-leave-active {
+  transition: 0.5s;
+}
+/*组件动画*/
+
+/*公共样式*/
+.padding10px {
+  padding: 10px;
+}
+
+/*公共样式*/
+
+
+/*选中样式*/

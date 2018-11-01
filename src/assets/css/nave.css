@@ -1,0 +1,262 @@
+.Nave-bg{
+  height: 300px;
+  margin: 0;
+  background: url('../img/nave/bg.png') left top repeat-x #f0f0f0;
+}
+.Nave-nav {
+  height: 300px;
+  margin: 0;
+}
+.Nave-bg-img{
+  position: absolute;
+  left: 50%;
+  top: 300px;
+  margin-left: -510px;
+  margin-top: -100px;
+  z-index: 0;
+}
+.Nave-nave-li{
+  float: left;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+}
+.Nave-nave-li-size{
+  height: 60px;
+  line-height: 60px;
+  margin-right: 10px;
+}
+.Nave-nav-img{
+// float: left;
+}
+.Nave-is-active{
+  background: #ffa585;
+}
+.Nave-nave-active{
+  background: #ffb24700;
+}
+.Nave-show{
+  text-align: center;
+}
+.Nave-header{
+  z-index: 2;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  right: 100px;
+  text-align: center;
+  top: 10px;
+  background: #cfc3be;
+  border-radius: 50%;
+  font-size: 12px;
+}
+.Nave-header-img {
+  border-radius: 50%;
+}
+.Nave-header-li{
+  float: left;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  width: inherit;
+}
+.Nave-log-out{
+  background: #bfbfbf;
+  border-radius: 50%;
+}
+.Nave-box{
+  width: 900px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 190px;
+  margin-left: -450px;
+  margin-top: -100px;
+  z-index: 1;
+}
+.Nave-2-box{
+  width: 900px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  margin-left: -450px;
+}
+.Nave-text {
+  font-size: 16px;
+  color: #422c0c;
+  text-shadow: 0px 1px 0px #e1caae;
+  display: block;
+  height: 50px;
+  font-weight: bold;
+}
+.Nave-home-img{
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+/*选中样式*/
+@keyframes choose
+{
+  from {
+    transform: rotate(20deg);
+    -ms-transform:rotate(20deg);
+    -moz-transform:rotate(20deg);
+    -webkit-transform:rotate(20deg);
+    -o-transform:rotate(20deg);
+  }
+  to {
+    transform: rotate(-20deg);
+    -ms-transform:rotate(-20deg);
+    -moz-transform:rotate(-20deg);
+    -webkit-transform:rotate(-20deg);
+    -o-transform:rotate(-20deg);
+  }
+}
+
+@-moz-keyframes choose
+{
+  from {
+    transform: rotate(20deg);
+    -ms-transform:rotate(20deg);
+    -moz-transform:rotate(20deg);
+    -webkit-transform:rotate(20deg);
+    -o-transform:rotate(20deg);
+  }
+  to {
+    transform: rotate(-20deg);
+    -ms-transform:rotate(-20deg);
+    -moz-transform:rotate(-20deg);
+    -webkit-transform:rotate(-20deg);
+    -o-transform:rotate(-20deg);
+  }
+}
+
+@-webkit-keyframes choose
+{
+  from {
+    transform: rotate(20deg);
+    -ms-transform:rotate(20deg);
+    -moz-transform:rotate(20deg);
+    -webkit-transform:rotate(20deg);
+    -o-transform:rotate(20deg);
+  }
+  to {
+    transform: rotate(-20deg);
+    -ms-transform:rotate(-20deg);
+    -moz-transform:rotate(-20deg);
+    -webkit-transform:rotate(-20deg);
+    -o-transform:rotate(-20deg);
+  }
+}
+
+@-o-keyframes choose
+{
+  from {
+    transform: rotate(20deg);
+    -ms-transform:rotate(20deg);
+    -moz-transform:rotate(20deg);
+    -webkit-transform:rotate(20deg);
+    -o-transform:rotate(20deg);
+  }
+  to {
+    transform: rotate(-20deg);
+    -ms-transform:rotate(-20deg);
+    -moz-transform:rotate(-20deg);
+    -webkit-transform:rotate(-20deg);
+    -o-transform:rotate(-20deg);
+  }
+}
+
+.Nave-is-active{
+  background:url(../img/choose.png) center center no-repeat;
+  transform-origin: 50% 0%;
+  -moz-transform-origin: 50% 0%;
+  -webkit-transform-origin: 50% 0%;
+  -o-transform-origin: 50% 0%;
+  animation: choose infinite alternate 0.7s ease-in-out;
+  -moz-animation: choose infinite alternate 0.7s ease-in-out;
+  -webkit-animation: choose infinite alternate 0.7s ease-in-out;
+  -o-animation: choose infinite alternate 0.7s ease-in-out;
+}
+.Nave-2-nav{
+  height: 100px;
+  margin: 0;
+}
+.Nave-2-nav-li{
+  height: 100px;
+  width: 100px;
+  line-height: 100px;
+}
+@media screen and (max-width: 700px) {
+  .Nave-other-img {
+    width: 40px;
+    height: 40px;
+  }
+  .Nave-box {
+    width: 340px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    top: 140px;
+    margin-left: -170px;
+    margin-top: -100px;
+    z-index: 1;
+  }
+  .Nave-nav {
+    height: 150px;
+  }
+  .Nave-nave-li-size {
+    height: 40px;
+    line-height: 40px;
+    margin-right: 1px;
+  }
+  .Nave-home-img {
+    width: 80px;
+    height:40px;
+    margin-top: 0px;
+    margin-left: -50px;
+  }
+  .Nave-bg-img {
+    width: 300px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    top: 300px;
+    margin-left: -150px;
+    margin-top: -208px;
+    z-index: 0;
+  }
+  .Nave-bg {
+    height: 140px;
+  }
+  .Nave-header {
+    z-index: 2;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    right: 50px;
+    text-align: center;
+    top: 4px;
+    background: #cfc3be;
+    border-radius: 50%;
+    font-size: 10px;
+  }
+  .Nave-header img {
+    width: 30px;
+    height: 30px;
+  }
+  .Nave-2-box {
+    width: 300px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+  }
+  .Nave-2-nav-li {
+    height: 100px;
+    width: 50px;
+    line-height: 100px;
+  }
+}
