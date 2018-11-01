@@ -66,9 +66,9 @@ export default {
       this.scene.add(this.directionalLight)
       this.OrbitControls = new THREE.OrbitControls(this.camera)
       this.OrbitControls.enablePan = false // 禁止平移
-      this.OrbitControls.enableZoom = true
+      this.OrbitControls.enableZoom = false
       this.OrbitControls.maxAzimuthAngle = 0.4
-      this.OrbitControls.maxPolarAngle = 1.5
+      this.OrbitControls.maxPolarAngle = 1.4
       this.OrbitControls.minAzimuthAngle = -0.2
       this.OrbitControls.minPolarAngle = 1
 
