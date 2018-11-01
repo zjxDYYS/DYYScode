@@ -68,8 +68,8 @@ export default {
       this.OrbitControls.enablePan = false // 禁止平移
       this.OrbitControls.enableZoom = false
       this.OrbitControls.maxAzimuthAngle = 0.4
-      this.OrbitControls.maxPolarAngle = 1.4
-      this.OrbitControls.minAzimuthAngle = -0.2
+      this.OrbitControls.maxPolarAngle = 1.5
+      this.OrbitControls.minAzimuthAngle = -0.1
       this.OrbitControls.minPolarAngle = 1
 
       this.MTLLoader = new THREE.MTLLoader()
