@@ -5,6 +5,7 @@
       :visible.sync="isShowProgram"
       width="90vw"
       top = "5vh"
+      @close="isShowProgram = false"
       :before-close="handleClose">
       <ProgramCode2></ProgramCode2>
     </el-dialog>

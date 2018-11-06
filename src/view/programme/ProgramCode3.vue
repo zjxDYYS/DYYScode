@@ -6,7 +6,7 @@
 <script>
 /* eslint-disable */
 export default {
-  name: 'ProgramCode2',
+  name: 'ProgramCode3',
   data () {
     return {
       clientWidth: '300', // 窗口宽度
@@ -23,12 +23,17 @@ export default {
       OBJLoader: null,
       MTLLoader: null,
       object: null,
-      loadObj: './static/model/program2/xinhuxing.obj',
-      loadMtl: './static/model/program2/xinhuxing.mtl',
+      DRACOLoader: null,
+      GLTFLoader: null,
+      DRACOLoaderPath: './static/plugins/gltf/',
+      GLTFLoaderPath: './static/model/program3/LittlestTokyo.glb',
+      mixer: null,//混合器
+      clock: null,
     }
   },
   methods: {
     init: function () {
+      this.alertTip()
       console.log('ProgramCode1初始化init')
       let me = this
       let container = document.getElementById('container')
@@ -37,9 +42,9 @@ export default {
       this.camera.position.set(0,20,50)
       this.ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
       this.scene.add(this.ambientLight)
-      this.pointLight = new THREE.PointLight(0xffffff, 0.2)
+      this.pointLight = new THREE.PointLight( 0xffffff, 2)
       this.camera.add(this.pointLight)
-      this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 )
+      this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8 )
       this.directionalLight.position.set(0,50,65)
       this.directionalLight.castShadow = true
       // 平行光配置
@@ -57,35 +62,48 @@ export default {
       this.scene.add(this.directionalLight)
       this.OrbitControls = new THREE.OrbitControls(this.camera)
       this.OrbitControls.enablePan = false // 禁止平移
-      this.OrbitControls.enableZoom = false
-      this.OrbitControls.maxAzimuthAngle = 0.4
+      // this.OrbitControls.enableZoom = false
+      //this.OrbitControls.maxAzimuthAngle = 1
       this.OrbitControls.maxPolarAngle = 1.5
-      this.OrbitControls.minAzimuthAngle = -0.2
-      this.OrbitControls.minPolarAngle = 1.1
+      //this.OrbitControls.minAzimuthAngle = 1
+      this.OrbitControls.minPolarAngle = 1
+      this.OrbitControls.maxDistance = 100 // 限制最远移动距离
 
-      this.MTLLoader = new THREE.MTLLoader()
-      this.OBJLoader = new THREE.OBJLoader()
+      this.clock = new THREE.Clock();//计时器
+      this.DRACOLoader = THREE.DRACOLoader.setDecoderPath( this.DRACOLoaderPath );
+      this.GLTFLoader = new THREE.GLTFLoader();
+      this.GLTFLoader.setDRACOLoader( new THREE.DRACOLoader() );
+      this.GLTFLoader.load( this.GLTFLoaderPath, function ( gltf ) {
 
-      this.MTLLoader.load(this.loadMtl, (materials) => {
-        materials.preload()
-        this.OBJLoader.setMaterials(materials)
-        this.OBJLoader.load(this.loadObj, (object) => {
-          object.scale.set(0.01, 0.01, 0.01)
-          me.object = object
-          me.object.children.forEach(function (value) {
-            value.receiveShadow = true
-            value.castShadow = true
-          });
-          me.object.receiveShadow = true
-          me.object.castShadow = true
-          this.scene.add(me.object)
-        })
-      })
+        me.object = gltf.scene;
+        me.object.position.set( 0, 2, 0 );
+        me.object.scale.set( 0.1, 0.1, 0.1 );
+        me.object.traverse( function ( child ) {
+
+          // if ( me.object.isMesh ) me.object.material.envMap = envMap;
+
+        } );
+
+        me.scene.add( me.object );
+
+        me.mixer = new THREE.AnimationMixer( me.object );
+        me.mixer.clipAction( gltf.animations[ 0 ] ).play();
+
+        me.animate();
+
+      }, undefined, function ( e ) {
+
+        console.error( e );
+
+      } );
+
       this.renderer = new THREE.WebGLRenderer({antialias: true})
       this.renderer.setClearColor(0x78dcf1)
       this.renderer.shadowMap.enabled = true// 开启渲染器支持阴影效果
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap// 设置阴影类型
       this.renderer.setSize(container.clientWidth, container.clientHeight)
+      this.renderer.gammaOutput = true
+      this.renderer.gammaFactor = 2.2
       container.appendChild(this.renderer.domElement)
     },
     animate: function () {
@@ -93,6 +111,8 @@ export default {
       // if(this.object && this.object.rotation){
       //   this.object.rotation.y += 0.001
       // }
+      let delta = this.clock.getDelta()
+      this.mixer &&　this.mixer.update( delta )
       this.renderer.render(this.scene, this.camera)
     },
     windowResize: function () {
@@ -100,6 +120,14 @@ export default {
       this.camera.updateProjectionMatrix()// 更新相机投影矩阵
       this.renderer.setSize(this.clientWidth, this.clientHeight)// 重新设置渲染器渲染范围
       this.OrbitControls.update()
+    },
+    alertTip () {
+      this.$notify({
+        title: '警告',
+        message: '模型文件比较大，请在WIFI下打开',
+        type: 'warning',
+        duration: 0
+      })
     }
   },
   mounted () {

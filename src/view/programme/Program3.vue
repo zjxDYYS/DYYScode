@@ -7,16 +7,16 @@
       top = "5vh"
       @close="isShowProgram = false"
       :before-close="handleClose">
-        <ProgramCode1></ProgramCode1>
+      <ProgramCode2></ProgramCode2>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import ProgramCode1 from '@/view/programme/ProgramCode1'
+import ProgramCode2 from '@/view/programme/ProgramCode3'
 export default {
-  name: 'Program1',
-  components: { ProgramCode1 },
+  name: 'Program3',
+  components: { ProgramCode2 },
   data () {
     return {
       isShowProgram: true
