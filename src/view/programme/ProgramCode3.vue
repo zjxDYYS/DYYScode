@@ -124,9 +124,8 @@ export default {
     alertTip () {
       this.$notify({
         title: '警告',
-        message: '模型文件比较大，请在WIFI下打开',
-        type: 'warning',
-        duration: 0
+        message: '模型较大,稍等，请在WIFI下打开',
+        type: 'warning'
       })
     }
   },

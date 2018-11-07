@@ -5,6 +5,7 @@
       :visible.sync="isShowProgram"
       width="90vw"
       top = "5vh"
+      ref="dialogItem"
       @close="isShowProgram = false"
       :before-close="handleClose">
       <ProgramCode2></ProgramCode2>
@@ -32,6 +33,10 @@ export default {
           done()
         })
         .catch(_ => {})
+    },
+    close () { // 关闭移动适配
+      var dialogItem = this.$refs.dialogItem
+      console.log(dialogItem)
     }
   }
 }

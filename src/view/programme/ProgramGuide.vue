@@ -19,11 +19,11 @@
 import ImgCard from '@/tool/ImgCard'
 let campus3 = {
   date: '这是我在vue中使用threejs的第二个例子，在这个例子中，我尝试导入外部模型，vue.js和three.js结合开发很方便，很快捷',
-  src: './static/program/program2/1.jpg',
-  info: '无材质户型'
+  src: './static/program/program3/1.jpg',
+  info: 'three官网例子和vue结合'
 }
 let campus2 = {
-  date: '这是我在vue中使用threejs的第二个例子，在这个例子中，我尝试导入外部模型，vue.js和three.js结合开发很方便，很快捷',
+  date: '一直在做家具和家居，非常感谢张哥，让我对模型更加了解，在这个例子中，我尝试导入外部模型，vue.js和three.js结合开发很方便，很快捷',
   src: './static/program/program2/1.jpg',
   info: '无材质户型'
 }
@@ -41,6 +41,19 @@ export default {
       campus2,
       campus3
     }
+  },
+  methods: {
+    alertTip () {
+      this.$notify({
+        title: '友情提示',
+        message: '编程最适合在PC端展示，移动端效果不佳！',
+        type: 'warning',
+        position: 'top-left'
+      })
+    }
+  },
+  mounted () {
+    this.alertTip()
   }
 }
 </script>
