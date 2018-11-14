@@ -34,6 +34,7 @@ export default {
       this.mesh = new THREE.Mesh(geometry, material)
       this.scene.add(this.mesh)
       this.renderer = new THREE.WebGLRenderer({antialias: true})
+      this.renderer.setClearColor(0xb7c3cc)
       this.renderer.setSize(container.clientWidth, container.clientHeight)
       container.appendChild(this.renderer.domElement)
     },
