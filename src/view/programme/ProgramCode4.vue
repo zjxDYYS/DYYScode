@@ -1,12 +1,15 @@
 <template>
   <div id="container">
+    <LoadProgress ref="loadingProgress"></LoadProgress>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
+import LoadProgress from '@/view/programme/LoadProgress'
   export default {
     name: 'ProgramCode4',
+    components: {LoadProgress},
     data () {
       return {
         clientWidth: '300', // 窗口宽度
@@ -67,7 +70,7 @@
         this.OrbitControls.minPolarAngle = 1
         this.OrbitControls.maxDistance = 100 // 限制最远移动距离
 
-
+        this.$refs.loadingProgress._data.showLoadingSign = true;//加载标志
         this.DRACOLoader = THREE.DRACOLoader.setDecoderPath( this.DRACOLoaderPath );
         this.GLTFLoader = new THREE.GLTFLoader();
         this.GLTFLoader.setDRACOLoader( new THREE.DRACOLoader() );
@@ -76,10 +79,13 @@
           me.object.position.set( 0, 0, 0 );
           me.object.scale.set( 40, 40, 40 );
           me.scene.add( me.object );
+          me.$refs.loadingProgress._data.showLoadingSign = false;//加载标志
           me.animate();
-        }, undefined, function ( e ) {
+        }, function (xhr) {
+          me.$refs.loadingProgress.onProgress(xhr)
+        }, function ( e ) {
           console.error( e );
-        } );
+        });
 
         this.renderer = new THREE.WebGLRenderer({antialias: true})
         this.renderer.setClearColor(0xb7c3cc)

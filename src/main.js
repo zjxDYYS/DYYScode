@@ -3,7 +3,8 @@
 import Local from './lib/saveLocalData' // 引入本地存储插件
 import Vue from 'vue'
 
-import '@/assets/css/app'
+import '@/assets/css/app'// 引入APP样式
+import '@/assets/css/program'// 引入program样式
 
 import 'element-ui/lib/theme-chalk/index.css' // 引入 element-ui 插件 解决插件样式能够被覆盖问题 此样式在前引入会被后面的样式覆盖
 

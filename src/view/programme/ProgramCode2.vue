@@ -1,12 +1,15 @@
 <template>
   <div id="container">
+    <LoadProgress ref="loadingProgress"></LoadProgress>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
+import LoadProgress from '@/view/programme/LoadProgress'
 export default {
   name: 'ProgramCode2',
+  components: {LoadProgress},
   data () {
     return {
       clientWidth: '300', // 窗口宽度
@@ -65,7 +68,7 @@ export default {
 
       this.MTLLoader = new THREE.MTLLoader()
       this.OBJLoader = new THREE.OBJLoader()
-
+      this.$refs.loadingProgress._data.showLoadingSign = true;//加载标志
       this.MTLLoader.load(this.loadMtl, (materials) => {
         materials.preload()
         this.OBJLoader.setMaterials(materials)
@@ -79,8 +82,13 @@ export default {
           me.object.receiveShadow = true
           me.object.castShadow = true
           this.scene.add(me.object)
+          me.$refs.loadingProgress._data.showLoadingSign = false;//加载标志
         })
-      })
+      },function (xhr) {
+        me.$refs.loadingProgress.onProgress(xhr)
+      }, function ( e ) {
+        console.error( e );
+      });
       this.renderer = new THREE.WebGLRenderer({antialias: true})
       this.renderer.setClearColor(0x78dcf1)
       this.renderer.shadowMap.enabled = true// 开启渲染器支持阴影效果

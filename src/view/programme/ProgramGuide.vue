@@ -23,7 +23,7 @@ import ImgCard from '@/tool/ImgCard'
 let campus4 = {
   date: '我把windows的3Dviewer的小蜜蜂模型导出来了，在这里观看效果一样',
   src: './static/program/program4/1.jpg',
-  info: 'twindows模型Bee',
+  info: 'windows模型Bee',
   nameId: 'ProgramCode4'
 }
 let campus3 = {

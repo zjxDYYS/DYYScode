@@ -4,8 +4,9 @@
 </template>
 
 <script>
-import * as THREE from 'THREE'
-let OrbitControls = require('three-orbit-controls')(THREE)
+/* eslint-disable */
+  // import * as THREE from 'THREE'
+// let OrbitControls = require('three-orbit-controls')(THREE)
 export default {
   name: 'ProgramCode1',
   data () {
@@ -16,7 +17,7 @@ export default {
       scene: null,
       light: null,
       renderer: null,
-      OrbitControls: OrbitControls,
+      OrbitControls: null,
       mesh: null
     }
   },
@@ -26,8 +27,13 @@ export default {
       let container = document.getElementById('container')
       this.camera = new THREE.PerspectiveCamera(70, container.clientWidth / container.clientHeight, 0.01, 10)
       this.camera.position.z = 1
-      this.OrbitControls = new OrbitControls(this.camera)
+      this.OrbitControls = new THREE.OrbitControls(this.camera)
       this.OrbitControls.enablePan = false // 禁止平移
+      // this.OrbitControls.enableZoom = false
+      // this.OrbitControls.maxAzimuthAngle = 0.4
+      // this.OrbitControls.maxPolarAngle = 1.5
+      // this.OrbitControls.minAzimuthAngle = -0.2
+      // this.OrbitControls.minPolarAngle = 1.1
       this.scene = new THREE.Scene()
       let geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2)
       let material = new THREE.MeshNormalMaterial()
