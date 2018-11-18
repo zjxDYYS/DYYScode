@@ -6,22 +6,198 @@
 
 <script>
 /* eslint-disable */
-import LoadProgress from '@/view/programme/LoadProgress'
+  import LoadProgress from '@/view/programme/LoadProgress'
+let lights = {
+  灯光6: {
+    name: '灯光6',
+    type: 'DirectionalLight',
+    param: {
+      hex: 0xffffff,
+      intensity: 1.5
+    },
+    shadow: {
+      bias: 0,
+      darkness: 0.5,
+      cameraFar: 1000,
+      cameraTop: 60,
+      cameraLeft: -150,
+      cameraNear: 0,
+      castShadow: 0,
+      cameraRight: 150,
+      cameraBottom: -100,
+      cameraVisible: 1,
+      shadowMapWidth: 8192,
+      shadowMapHeight: 8192
+    },
+    isHelper: false,
+    position: {
+      x: -341,
+      y: 20,
+      z: 0
+    }
+  },
+  灯光5: {
+    name: '灯光5',
+    type: 'DirectionalLight',
+    param: {
+      hex: 0xffffff,
+      intensity: 1
+    },
+    shadow: {
+      bias: 0,
+      darkness: 0.5,
+      cameraFar: 1000,
+      cameraTop: 60,
+      cameraLeft: -150,
+      cameraNear: 0,
+      castShadow: 0,
+      cameraRight: 150,
+      cameraBottom: -100,
+      cameraVisible: 1,
+      shadowMapWidth: 8192,
+      shadowMapHeight: 8192
+    },
+    isHelper: false,
+    position: {
+      x: 2,
+      y: 1,
+      z: -219
+    }
+  },
+  灯光4: {
+    name: '灯光4',
+    type: 'DirectionalLight',
+    param: {
+      hex: 0xffffff,
+      intensity: 1.5
+    },
+    shadow: {
+      bias: 0,
+      darkness: 0.5,
+      cameraFar: 1000,
+      cameraTop: 60,
+      cameraLeft: -150,
+      cameraNear: 0,
+      castShadow: 0,
+      cameraRight: 150,
+      cameraBottom: -100,
+      cameraVisible: 1,
+      shadowMapWidth: 8192,
+      shadowMapHeight: 8192
+    },
+    isHelper: false,
+    position: {
+      x: 261,
+      y: 8,
+      z: -7
+    }
+  },
+  灯光3: {
+    name: '灯光3',
+    type: 'DirectionalLight',
+    param: {
+      hex: 0xffffff,
+      intensity: 1.8
+    },
+    shadow: {
+      bias: 0,
+      darkness: 0.5,
+      cameraFar: 1000,
+      cameraTop: 60,
+      cameraLeft: -150,
+      cameraNear: 0,
+      castShadow: 0,
+      cameraRight: 150,
+      cameraBottom: -100,
+      cameraVisible: 1,
+      shadowMapWidth: 8192,
+      shadowMapHeight: 8192
+    },
+    isHelper: false,
+    position: {
+      x: 0,
+      y: 1,
+      z: 284
+    }
+  },
+  灯光2: {
+    name: '灯光2',
+    type: 'DirectionalLight',
+    param: {
+      hex: 0xffffff,
+      intensity: 2
+    },
+    shadow: {
+      bias: 0,
+      darkness: 0.5,
+      cameraFar: 1000,
+      cameraTop: 60,
+      cameraLeft: -150,
+      cameraNear: 0,
+      castShadow: 0,
+      cameraRight: 150,
+      cameraBottom: -100,
+      cameraVisible: 1,
+      shadowMapWidth: 8192,
+      shadowMapHeight: 8192
+    },
+    isHelper: false,
+    position: {
+      x: 0,
+      y: -84,
+      z: 1
+    }
+  },
+  灯光1: {
+    name: '灯光1',
+    type: 'DirectionalLight',
+    param: {
+      hex: 0xffffff,
+      intensity: 2
+    },
+    shadow: {
+      bias: 0,
+      darkness: 0.5,
+      cameraFar: 1000,
+      cameraTop: 60,
+      cameraLeft: -150,
+      cameraNear: 0,
+      castShadow: 0,
+      cameraRight: 150,
+      cameraBottom: -100,
+      cameraVisible: 1,
+      shadowMapWidth: 8192,
+      shadowMapHeight: 8192
+    },
+    isHelper: false,
+    position: {
+      x: -7,
+      y: 528,
+      z: -2
+    }
+  },
+  isDefault: true,
+  type: 'fullShow'
+}
+  let envImg = {
+    imgPath: '../../static/model/envMap/',                //(String) 贴图Base路径
+    imgName: ['1_l', '1_r', '1_u', '1_d', '1_f', '1_b'],  //(String/Array) 贴图名字
+    format: 'jpg'                                         //(String) 贴图类型 如png、jpg等
+  }
   export default {
     name: 'ProgramCode4',
     components: {LoadProgress},
     data () {
       return {
         clientWidth: '300', // 窗口宽度
-        clientHeight: '600', // 窗口高度
+        clientHeight: '300', // 窗口高度
         camera: null,
         scene: null,
-        light: null,
+        lights: lights,
         renderer: null,
         OrbitControls: null,
         ambientLight: null,
         pointLight: null,
-        directionalLight: null,
         spotLight: null,
         OBJLoader: null,
         MTLLoader: null,
@@ -30,93 +206,86 @@ import LoadProgress from '@/view/programme/LoadProgress'
         GLTFLoader: null,
         DRACOLoaderPath: './static/plugins/gltf/',
         GLTFLoaderPath: './static/model/program4/Bee.glb',
+        envImg: envImg
       }
     },
     methods: {
-      init: function () {
-        this.alertTip()
+      init () {
         console.log('ProgramCode1初始化init')
         let me = this
-        let container = document.getElementById('container')
+        let refs = this.$refs
+        this.container = document.getElementById('container')
         this.scene = new THREE.Scene()
-        this.camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.01, 1000)
+        this.camera = new THREE.PerspectiveCamera(60, this.clientWidth / this.clientHeight, 0.01, 1000)
         this.camera.position.set(0,20,50)
-        this.ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
-        this.scene.add(this.ambientLight)
-        this.pointLight = new THREE.PointLight( 0xffffff, 2)
+        // this.ambientLight = new THREE.AmbientLight(0xffffff, 0.9)
+        // this.scene.add(this.ambientLight)
+        this.pointLight = new THREE.PointLight( 0xffffff, 0.8)
         this.camera.add(this.pointLight)
-        this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8 )
-        this.directionalLight.position.set(0,50,65)
-        this.directionalLight.castShadow = true
-        // 平行光配置
-        this.directionalLight.castShadow = true
-        this.directionalLight.shadow.camera.near = 1
-        this.directionalLight.shadow.camera.far = 100
-        this.directionalLight.shadow.camera.left = -50
-        this.directionalLight.shadow.camera.right = 50
-        this.directionalLight.shadow.camera.top = 50
-        this.directionalLight.shadow.camera.bottom = -50
 
-        // 设置阴影的分辨率
-        this.directionalLight.shadow.mapSize.width = 1024
-        this.directionalLight.shadow.mapSize.height = 1024
-        this.scene.add(this.directionalLight)
-        this.OrbitControls = new THREE.OrbitControls(this.camera)
+        this.$lights.init(this.scene, this.lights)
+        this.OrbitControls = new THREE.OrbitControls(this.camera,this.container)
         this.OrbitControls.enablePan = false // 禁止平移
         // this.OrbitControls.enableZoom = false
-        //this.OrbitControls.maxAzimuthAngle = 1
+        // this.OrbitControls.maxAzimuthAngle = 1
         // this.OrbitControls.maxPolarAngle = 1.5
-        //this.OrbitControls.minAzimuthAngle = 1
-        this.OrbitControls.minPolarAngle = 1
-        this.OrbitControls.maxDistance = 100 // 限制最远移动距离
+        // this.OrbitControls.minAzimuthAngle = 1
+        // this.OrbitControls.minPolarAngle = 1
+        // this.OrbitControls.maxDistance = 100 // 限制最远移动距离
 
-        this.$refs.loadingProgress._data.showLoadingSign = true;//加载标志
-        this.DRACOLoader = THREE.DRACOLoader.setDecoderPath( this.DRACOLoaderPath );
+        // this.DRACOLoader = THREE.DRACOLoader.setDecoderPath( this.DRACOLoaderPath );
         this.GLTFLoader = new THREE.GLTFLoader();
-        this.GLTFLoader.setDRACOLoader( new THREE.DRACOLoader() );
+        // this.GLTFLoader.setDRACOLoader( new THREE.DRACOLoader() );
+        this.$refs.loadingProgress._data.showLoadingSign = true;//加载标志
         this.GLTFLoader.load( this.GLTFLoaderPath, function ( gltf ) {
           me.object = gltf.scene;
           me.object.position.set( 0, 0, 0 );
           me.object.scale.set( 40, 40, 40 );
-          me.scene.add( me.object );
+          me.$envMap.applyEnvMap(me.object, me.envImg);
           me.$refs.loadingProgress._data.showLoadingSign = false;//加载标志
+          me.scene.add( me.object );
           me.animate();
-        }, function (xhr) {
+        },function (xhr) {
           me.$refs.loadingProgress.onProgress(xhr)
         }, function ( e ) {
           console.error( e );
         });
-
         this.renderer = new THREE.WebGLRenderer({antialias: true})
         this.renderer.setClearColor(0xb7c3cc)
         this.renderer.shadowMap.enabled = true// 开启渲染器支持阴影效果
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap// 设置阴影类型
-        this.renderer.setSize(container.clientWidth, container.clientHeight)
-        this.renderer.gammaOutput = true
-        this.renderer.gammaFactor = 2.2
-        container.appendChild(this.renderer.domElement)
+        this.renderer.setSize(this.clientWidth, this.clientHeight)
+        this.renderer.gammaFactor = 2 // 默认是2。
+        this.renderer.gammaInput = true // 如果设置，那么它就会期望所有的纹理和颜色都是预乘伽玛。默认是false
+        this.renderer.gammaOutput = true // 如果设置好，那么它就会期望所有的纹理和颜色都需要在预乘的伽马中被输出。默认是false
+        this.renderer.localClippingEnabled = false // 定义渲染器是否尊重对象级的剪切面。默认是false
+        this.renderer.physicallyCorrectLights = true // 是否使用物理正确的照明方式。默认是false
+        this.renderer.toneMapping = THREE.LinearToneMapping // 色调设置 （ THREE.NoToneMapping 0 ） （ THREE.LinearToneMapping 1 ）（ THREE.ReinhardToneMapping 2 ）（ THREE.Uncharted2ToneMapping 3 ）（ THREE.CineonToneMapping 4 ）
+        this.renderer.toneMappingExposure = 1 // 色调映射的曝光水平。默认值为1。
+        this.renderer.toneMappingWhitePoint = 1 // 色调映射白点。默认值为1。
+        this.renderer.setSize(this.clientWidth, this.clientHeight)
+        this.container.appendChild(this.renderer.domElement)
       },
-      animate: function () {
+      animate () {
         requestAnimationFrame(this.animate)
+        // if(this.object && this.object.rotation){
+        //   this.object.rotation.y += 0.01
+        // }
+        this.OrbitControls.update()
         this.renderer.render(this.scene, this.camera)
       },
-      windowResize: function () {
+      windowResize () {
         this.camera.aspect = this.clientWidth / this.clientHeight // 重新设置相机宽高比例
         this.camera.updateProjectionMatrix()// 更新相机投影矩阵
         this.renderer.setSize(this.clientWidth, this.clientHeight)// 重新设置渲染器渲染范围
-        this.OrbitControls.update()
-      },
-      alertTip () {
-        this.$notify({
-          title: '警告',
-          message: '模型较大,稍等，请在WIFI下打开',
-          type: 'warning'
-        })
+        // this.OrbitControls.update()
       }
     },
     mounted () {
       console.log('ProgramCode1初始化mounted')
       const that = this
+      this.clientWidth = `${document.documentElement.clientWidth}`
+      this.clientHeight = `${document.documentElement.clientHeight}`
       window.onresize = () => {
         return (() => {
           that.clientWidth = `${document.documentElement.clientWidth}`

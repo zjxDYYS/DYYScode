@@ -1,5 +1,8 @@
 <template>
   <div>
+    <router-link :to="{name: 'Program5'}" tag="div" class="guide-body">
+      <ImgCard :designImgData="campus5"></ImgCard>
+    </router-link>
     <router-link :to="{name: 'Program4'}" tag="div" class="guide-body">
       <ImgCard :designImgData="campus4"></ImgCard>
     </router-link>
@@ -20,6 +23,12 @@
 
 <script>
 import ImgCard from '@/tool/ImgCard'
+let campus5 = {
+  date: '想做一些效果，和js动画的尝试',
+  src: './static/program/program5/1.jpg',
+  info: '我的3D简历',
+  nameId: 'ProgramCode5'
+}
 let campus4 = {
   date: '我把windows的3Dviewer的小蜜蜂模型导出来了，在这里观看效果一样',
   src: './static/program/program4/1.jpg',
@@ -52,7 +61,8 @@ export default {
       campus1,
       campus2,
       campus3,
-      campus4
+      campus4,
+      campus5
     }
   },
   methods: {

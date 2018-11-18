@@ -1,7 +1,10 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Local from './lib/saveLocalData' // 引入本地存储插件
 import Vue from 'vue'
+import Local from './lib/saveLocalData' // 引入本地存储插件
+import lights from './lib/lights' // 引入threejs lights插件
+import envMap from './lib/envMap' // 引入threejs envMap插件
+import material from './lib/material' // 引入threejs material插件
 
 import '@/assets/css/app'// 引入APP样式
 import '@/assets/css/program'// 引入program样式
@@ -157,6 +160,10 @@ Vue.prototype.$message = Message
 Vue.config.productionTip = false
 
 Vue.use(Local)
+Vue.use(lights)
+Vue.use(envMap)
+Vue.use(material)
+
 router.beforeEach((to, from, next) => {
   if (to.matched.some((item) => item.meta.login)) { // 如果父子路由所有meta的login存在说明需要登陆
     let info = router.app.$local.fetch('DYYS')

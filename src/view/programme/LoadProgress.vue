@@ -3,7 +3,7 @@
     <div class="loading-percnet-text">{{percent + '%'}}</div>
 
     <!--<van-loading color="#5E83AE" size="75px" class="loading-sign"/>-->
-    <el-progress type="circle" :percentage="50" status=""></el-progress>
+    <!--<el-progress type="circle" :percentage="50" status=""></el-progress>-->
     <div class="loading-text">努力加载中{{loadingText}}<!--.{{percent}}%--></div>
 
   </div>

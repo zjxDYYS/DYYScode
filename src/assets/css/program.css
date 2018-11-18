@@ -4,6 +4,7 @@
   position: absolute;
   font-size: 40px;
   color: #f8f8f8;
+  cursor: pointer;
 }
 .program-title{
   width: 100%;
