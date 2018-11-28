@@ -1,5 +1,11 @@
 <template>
   <div>
+    <router-link :to="{name: 'Program7'}" tag="div" class="guide-body">
+      <ImgCard :designImgData="campus7"></ImgCard>
+    </router-link>
+    <router-link :to="{name: 'Program6'}" tag="div" class="guide-body">
+      <ImgCard :designImgData="campus6"></ImgCard>
+    </router-link>
     <router-link :to="{name: 'Program5'}" tag="div" class="guide-body">
       <ImgCard :designImgData="campus5"></ImgCard>
     </router-link>
@@ -23,6 +29,18 @@
 
 <script>
 import ImgCard from '@/tool/ImgCard'
+let campus7 = {
+  date: '把大型模型分割优化减少模型和贴图等素材，加快加载速度，',
+  src: './static/program/program6/1.jpg',
+  info: '城市部分展示',
+  nameId: 'ProgramCode6'
+}
+let campus6 = {
+  date: '把大型模型分割优化减少模型和贴图等素材，加快加载速度，',
+  src: './static/program/program6/1.jpg',
+  info: '城市部分展示',
+  nameId: 'ProgramCode6'
+}
 let campus5 = {
   date: '想做一些效果，和js动画的尝试',
   src: './static/program/program5/1.jpg',
@@ -62,7 +80,9 @@ export default {
       campus2,
       campus3,
       campus4,
-      campus5
+      campus5,
+      campus6,
+      campus7
     }
   },
   methods: {

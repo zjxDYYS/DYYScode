@@ -28,6 +28,12 @@ let Program4 = () => {
 let Program5 = () => {
   return import('../view/programme/Program5')
 }
+let Program6 = () => {
+  return import('../view/programme/Program6')
+}
+let Program7 = () => {
+  return import('../view/programme/Program7')
+}
 // 关于编程页面的组件 懒加载
 let Login = () => {
   return import('../components/Login')
@@ -252,6 +258,18 @@ export default new Router({
               path: '/Program5', // 程序5
               name: 'Program5',
               component: Program5,
+              props: { visible: true }
+            },
+            {
+              path: '/Program6', // 程序6
+              name: 'Program6',
+              component: Program6,
+              props: { visible: true }
+            },
+            {
+              path: '/Program7', // 程序7
+              name: 'Program7',
+              component: Program7,
               props: { visible: true }
             }
           ]

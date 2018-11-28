@@ -7,7 +7,7 @@
 
 <script>
 // import Expectation from '@/tool/Expectation'
-import ProgramCode5 from '@/view/programme/ProgramCode5'
+import ProgramCode5 from '@/view/programme/ProgramCode4'
 export default {
   name: 'Home',
   components: {

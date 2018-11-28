@@ -5,7 +5,7 @@
 </template>
 
 <script>
-// /* eslint-disable */
+/* eslint-disable */
 import LoadProgress from '@/view/programme/LoadProgress'
 let lights = {
   // 灯光6: {
