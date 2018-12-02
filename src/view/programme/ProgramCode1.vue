@@ -24,10 +24,10 @@ export default {
   methods: {
     init: function () {
       console.log('ProgramCode1初始化init')
-      let container = document.getElementById('container')
-      this.camera = new THREE.PerspectiveCamera(70, container.clientWidth / container.clientHeight, 0.01, 10)
+      this.container = document.getElementById('container')
+      this.camera = new THREE.PerspectiveCamera(70, this.clientWidth / this.clientHeight, 0.01, 10)
       this.camera.position.z = 1
-      this.OrbitControls = new THREE.OrbitControls(this.camera)
+      this.OrbitControls = new THREE.OrbitControls(this.camera,this.container)
       this.OrbitControls.enablePan = false // 禁止平移
       // this.OrbitControls.enableZoom = false
       // this.OrbitControls.maxAzimuthAngle = 0.4
@@ -41,8 +41,8 @@ export default {
       this.scene.add(this.mesh)
       this.renderer = new THREE.WebGLRenderer({antialias: true})
       this.renderer.setClearColor(0xb7c3cc)
-      this.renderer.setSize(container.clientWidth, container.clientHeight)
-      container.appendChild(this.renderer.domElement)
+      this.renderer.setSize(this.clientWidth, this.clientHeight)
+      this.container.appendChild(this.renderer.domElement)
     },
     animate: function () {
       requestAnimationFrame(this.animate)
@@ -60,6 +60,8 @@ export default {
   mounted () {
     console.log('ProgramCode1初始化mounted')
     const that = this
+    this.clientWidth = `${document.documentElement.clientWidth}`
+    this.clientHeight = `${document.documentElement.clientHeight}`
     window.onresize = () => {
       return (() => {
         that.clientWidth = `${document.documentElement.clientWidth}`

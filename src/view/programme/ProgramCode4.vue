@@ -250,7 +250,7 @@ let lights = {
         }, function ( e ) {
           console.error( e );
         });
-        this.renderer = new THREE.WebGLRenderer({antialias: true})
+        this.renderer = new THREE.WebGLRenderer({antialias: true, logarithmicDepthBuffer: true})
         this.renderer.setClearColor(0xb7c3cc)
         this.renderer.shadowMap.enabled = true// 开启渲染器支持阴影效果
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap// 设置阴影类型

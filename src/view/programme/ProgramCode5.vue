@@ -252,7 +252,7 @@ export default {
       this.initgrid()
       this.initDefMat()
       this.word()
-      this.renderer = new THREE.WebGLRenderer({antialias: true})
+      this.renderer = new THREE.WebGLRenderer({antialias: true, logarithmicDepthBuffer: true})
       this.renderer.setClearColor(0xb0c5d9)
       this.renderer.shadowMap.enabled = true// 开启渲染器支持阴影效果
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap// 设置阴影类型

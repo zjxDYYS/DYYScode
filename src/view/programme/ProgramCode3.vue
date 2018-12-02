@@ -39,9 +39,9 @@ export default {
       this.alertTip()
       console.log('ProgramCode1初始化init')
       let me = this
-      let container = document.getElementById('container')
+      this.container= document.getElementById('container')
       this.scene = new THREE.Scene()
-      this.camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.01, 1000)
+      this.camera = new THREE.PerspectiveCamera(60, this.clientWidth / this.clientHeight, 0.01, 1000)
       this.camera.position.set(0,20,50)
       this.ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
       this.scene.add(this.ambientLight)
@@ -63,7 +63,7 @@ export default {
       this.directionalLight.shadow.mapSize.width = 1024
       this.directionalLight.shadow.mapSize.height = 1024
       this.scene.add(this.directionalLight)
-      this.OrbitControls = new THREE.OrbitControls(this.camera)
+      this.OrbitControls = new THREE.OrbitControls(this.camera,this.container)
       this.OrbitControls.enablePan = false // 禁止平移
       // this.OrbitControls.enableZoom = false
       //this.OrbitControls.maxAzimuthAngle = 1
@@ -101,14 +101,14 @@ export default {
         console.error( e );
       });
 
-      this.renderer = new THREE.WebGLRenderer({antialias: true})
+      this.renderer = new THREE.WebGLRenderer({antialias: true, logarithmicDepthBuffer: true})
       this.renderer.setClearColor(0x78dcf1)
       this.renderer.shadowMap.enabled = true// 开启渲染器支持阴影效果
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap// 设置阴影类型
-      this.renderer.setSize(container.clientWidth, container.clientHeight)
       this.renderer.gammaOutput = true
       this.renderer.gammaFactor = 2.2
-      container.appendChild(this.renderer.domElement)
+      this.renderer.setSize(this.clientWidth, this.clientHeight)
+      this.container.appendChild(this.renderer.domElement)
     },
     animate: function () {
       requestAnimationFrame(this.animate)
@@ -136,6 +136,8 @@ export default {
   mounted () {
     console.log('ProgramCode1初始化mounted')
     const that = this
+    this.clientWidth = `${document.documentElement.clientWidth}`
+    this.clientHeight = `${document.documentElement.clientHeight}`
     window.onresize = () => {
       return (() => {
         that.clientWidth = `${document.documentElement.clientWidth}`

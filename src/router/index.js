@@ -34,6 +34,10 @@ let Program6 = () => {
 let Program7 = () => {
   return import('../view/programme/Program7')
 }
+// 单页面展示
+let SingleDisplay = () => {
+  return import('../components/SingleDisplay')
+}
 // 关于编程页面的组件 懒加载
 let Login = () => {
   return import('../components/Login')
@@ -275,6 +279,15 @@ export default new Router({
           ]
         }
       ]
+    },
+    {
+      path: '/SingleDisplay',
+      name: 'SingleDisplay',
+      component: SingleDisplay,
+      meta: {
+        type: 'SingleDisplay'
+      },
+      props: (route) => ({ query: route.query.programId })
     },
     {
       path: '/Document',
